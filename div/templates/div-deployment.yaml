@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: div
+  name: div
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: div
+  template:
+    metadata:
+      labels:
+        app: div
+    spec:
+      containers:
+        - image: "public.ecr.aws/z8c2k6d0/div:{{ .Chart.AppVersion }}"
+          name: div
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
